@@ -1,4 +1,4 @@
-import requests, json, base64#, common
+import requests, json, base64, sys
 from requests.auth import HTTPBasicAuth
 from app import logger
 
@@ -58,10 +58,9 @@ class Login():
 		lev = self.level()
 		if 'lembaga' in lev:
 			urlUser = "{}{}/".format(self.url, lev.replace('-','/'))
-		elif 'biktren' in lev:
-			urlUser = "{}{}/".format(self.url, lev)
 		else:
-			urlUser = "{}".format(self.url)
+			print ("Mohon Maaf hanya untuk aku Lembaga")
+			sys.exit(0)
 		return urlUser
 
 class Pedatren(Login):
