@@ -38,10 +38,14 @@ def updateNomorInduk():
             sukses = "Update Nomor Induk Nanda : {} Sukses".format(nama)
             print(sukses)
             logger.info(sukses)
+        elif updatePelajar == 400:
+            duplikat = "Terdapat duplikat nomor induk Nanda : {} Dengan Induk : {}.\nSilahkan diperbaiki".format(nama, induk)
+            print(duplikat)
+            logger.error(duplikat)
         else:
             gagal = "Update Nomor Induk Nanda : {} Gagal\nSilahkan cek Log".format(nama)
             print(gagal)
-            logger.info(gagal)
+            logger.error(gagal)
 
 if __name__ == '__main__':
     print '''1. Ambil Data Dari PEDATREN\n2. Update Nomor Induk'''
