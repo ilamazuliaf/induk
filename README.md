@@ -3,7 +3,7 @@
 ### Buka CMD lalu masuk ke folder script bersemayam
 ### Ketik di CMD
 ```
-pip install -r requirement.txt
+python setup.py install
 ```
 Setting USERNAME & PASSWORD di file pedatren.py
 ### Setelah selesai jalankan scriptnya
