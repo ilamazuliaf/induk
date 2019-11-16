@@ -4,6 +4,7 @@ import base64
 import sys
 from requests.auth import HTTPBasicAuth
 from app import logger
+import platform
 
 
 class Login():
@@ -26,7 +27,7 @@ class Login():
         header = {
             'content-type': 'application/json',
             'connection': 'keep-alive',
-            # 'User-Agent' : conf['agent'],
+            'User-Agent': 'Update Induk ' + platform.system() + ' ' + platform.node(),
             'x-token': self.__token,
         }
         return header
@@ -35,13 +36,16 @@ class Login():
     def url(self):
         return self.__url
 
-    def login(self):
+    def login(self, username, password):
         data = requests.get(self.url+'auth/login',
-                            auth=('username', 'password'), headers=self.headers)
+                            auth=(username, password), headers=self.headers)
         if data.status_code == 200:
             self.__token = data.headers['x-token']
             with open('token.txt', 'w') as f:
                 f.write(self.__token)
+        else:
+            print("Username atau Password salah!")
+            sys.exit(0)
 
     def cekLogin(self):
         data = requests.get(self.url+'auth/login', headers=self.headers)
@@ -65,6 +69,8 @@ class Login():
         if 'lembaga' in lev:
             urlUser = "{}{}/".format(self.url, lev.replace('-', '/'))
         else:
+            with open("token.txt", "w") as f:
+                f.write("")
             print ("Mohon Maaf hanya untuk aku Lembaga")
             sys.exit(0)
         return urlUser
