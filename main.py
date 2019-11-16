@@ -62,7 +62,7 @@ def updateNomorInduk():
 
 if __name__ == '__main__':
     cekLogin()
-    api.urlUser()
+    # api.urlUser()
     print ('''1. Ambil Data Dari PEDATREN\n2. Update Nomor Induk''')
     try:
         pilih = input("Silahkan Masukkan Pilihan : ")
