@@ -1,9 +1,15 @@
 from pedatren import Pedatren, cetakExcel
 import xlrd
 from app import logger
+from getpass import getpass
 
 api = Pedatren()
 
+def cekLogin():
+    if api.cekLogin() != 200:
+        username = raw_input("Masukkan Username : ")
+        password = getpass("Masukkan Password : ")
+        api.login(username=username, password=password)
 
 def allData():
     data = api.all_pelajar()
@@ -55,6 +61,8 @@ def updateNomorInduk():
 
 
 if __name__ == '__main__':
+    cekLogin()
+    api.urlUser()
     print ('''1. Ambil Data Dari PEDATREN\n2. Update Nomor Induk''')
     try:
         pilih = input("Silahkan Masukkan Pilihan : ")
